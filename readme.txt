@@ -15,6 +15,8 @@ WP-VR-view is a plugin that allows you to **display Photo Sphere images and 360 
 Website visitors will be able to navigate through your panoramas.
 Smartphone users can use Google cardboard  to look through in Virtual reality way.
 
+= Quick Video Demo =
+http://www.youtube.com/watch?v=DWkLce9M-h0
 
 = Demos =
 

@@ -72,6 +72,10 @@ Do you have questions or issues with plugin? Use forum or email tumanob@gmail.co
 
 ### Changelog
 
+= 1.6 =
+* checked WP version 4.6.1 support
+
+
 = 1.4 =
 * added support for 360 video
 * added buttons for WYSIWYG editor

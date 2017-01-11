@@ -6,11 +6,8 @@
 * Author: Tumanov Alexander
 * Author URI: https://alexander-tumanov.name
 */
-include ('admin/admin.php');
-include ('includes/php/class.Image.php');
-include ('includes/php/class.Video.php');
-include ('includes/views/wp-vr-image-view.php');
-include ('includes/views/wp-vr-video-view.php');
+require_once( __DIR__ . '/includes/php/autoload.php' );
+
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
@@ -28,9 +25,11 @@ function vr_creation($atts){
        'img' => '',
        'video' => '',
        'pimg' => '',
-       'stereo' => 'false',
        'width' => '640',
        'height' => '360',
+       'stereo' => 'false',
+       'yaw'=>0,
+       'hascontrols'=>'false'
    ), $atts );
 
 

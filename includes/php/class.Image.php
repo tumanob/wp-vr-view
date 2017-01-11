@@ -21,13 +21,13 @@ class VrImage
      $this->vrImageWidth=$arguments['width'];
      $this->vrImageHeight=$arguments['height'];
      $this->vrImageIsStereo=$arguments['stereo'];
-     $this->vrImageDefaultYaw=$arguments['defaultyaw'];
+     $this->vrImageDefaultYaw=$arguments['yaw'];
 
   }
 
   function generateHtmlCode(){
 
-    // get html code from views
+    // get html code from views -  for JS API
   /*  $htmlCode = wpVrSingleImageHtmlView::render( $this->vrImageUrl,
                                                  $this->vrPreviewImageUrl,
                                                  $this->vrImageWidth,
@@ -35,9 +35,14 @@ class VrImage
                                                  $this->vrImageIsStereo
                                                  );
 */
-
-   $htmlCode = ' <iframe width ="100%" height="450" src="'.plugins_url().'/wp-vr-view/asset/index.html?image='.$this->vrImageUrl.'&is_stereo=false&default_yaw=180">
-                                             </iframe>';
+    // HTML template for iframe
+   $htmlCode = wpVrSingleImageHtmlViewIframe::render( $this->vrImageUrl,
+                                                  $this->vrPreviewImageUrl,
+                                                  $this->vrImageWidth,
+                                                  $this->vrImageHeight,
+                                                  $this->vrImageIsStereo,
+                                                  $this->vrImageDefaultYaw
+                                                  );
 
     return $htmlCode;
   }

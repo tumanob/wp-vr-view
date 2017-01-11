@@ -17,7 +17,7 @@
          * @return string $html the html for the view
          * @since 0.1
          */
-        public static function render($videoUrl,$previewImageUrl, $width, $height,$stereo)
+        public static function render($videoUrl,$previewImageUrl, $width, $height,$stereo,$yawAngle)
         {
         ?>
 
@@ -42,6 +42,7 @@
                 height: '<?php echo $height ?>',
                 video: '<?php echo $videoUrl ?>',
                 is_stereo: '<?php echo $stereo ?>',
+                default_yaw: '<?php echo $yawAngle ?>'
               });
               vrVideoView.on('ready', onVrVideoViewReady);
 

@@ -3,9 +3,9 @@
 /**
  * class to render the html for single VR image
  *
- * @package MVC Example
- * @subpackage Single Post View
- * @since 0.1
+ * @package MVC - View of the page
+ * @subpackage Single Image View
+ * @since 1.8
  */
     class wpVrSingleImageHtmlView
     {
@@ -23,12 +23,12 @@
         ?>
 
           <div>
-            <div id="vrview"></div>
+            <div id="vrimageview"></div>
 
             <script src="<?php echo plugins_url();?>/wp-vr-view/asset/build/vrview.js"></script>
 
             <script type="text/javascript">
-            var vrView;
+            var vrImageView;
             var scenes = {
               wpvr: {
                 image: '<?php echo $imageUrl ?>',
@@ -36,9 +36,9 @@
               }
             };
 
-            function onLoad() {
+            function onVrImageLoad() {
             //  console.log('On load');
-              vrView = new VRView.Player('#vrview', {
+              vrImageView = new VRView.Player('#vrimageview', {
                 width: '<?php echo $width ?>',
                 height: '<?php echo $height ?>',
                 image: '<?php echo plugins_url();?>/wp-vr-view/asset/images/blank.png',
@@ -46,22 +46,22 @@
                 is_autopan_off: true
               });
 
-              vrView.on('ready', function(){
+              vrImageView.on('ready', function(){
                   //console.log('On ready');
-                vrView.setContent({
+                vrImageView.setContent({
                   image: scenes['wpvr'].image,
                   preview: scenes['wpvr'].preview,
                   is_autopan_off: true
                 });
               });
 
-                vrView.on('error', onVRViewError);
+                vrImageView.on('error', onVRImageViewError);
             }
 
-            function onVRViewError(e) {
+            function onVRImageViewError(e) {
               console.log('Error! %s', e.message);
             }
-            window.addEventListener('load', onLoad);
+            window.addEventListener('load', onVrImageLoad);
             </script>
           </div>
 

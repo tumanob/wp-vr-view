@@ -2,9 +2,9 @@
 /**
  * class to render the html for single VR Video
  *
- * @package MVC Example
- * @subpackage Single Post View
- * @since 0.1
+ * @package MVC - View
+ * @subpackage Single Video View
+ * @since 1.8
  */
     class wpVrSingleVideoHtmlView
     {
@@ -22,7 +22,7 @@
         ?>
 
           <div style="width:<?php if (strpos($width, '%') !== false){ echo $width;}else{echo $width."px";}?>">
-            <div id="vrview"></div>
+            <div id="vrvideoview"></div>
             <div id="controls">
                 <div id="toggleplay" class="paused"></div>
                 <div id="togglemute"></div>
@@ -31,58 +31,58 @@
             <script src="<?php echo plugins_url();?>/wp-vr-view/asset/build/vrview.js"></script>
 
             <script type="text/javascript">
-            var vrView;
+            var vrVideoView;
             var playButton;
             var muteButton;
 
-            function onLoad() {
+            function onVrVideoLoad() {
               // Load VR View.
-              vrView = new VRView.Player('#vrview', {
+              vrVideoView = new VRView.Player('#vrvideoview', {
                 width: '<?php echo $width ?>',
                 height: '<?php echo $height ?>',
                 video: '<?php echo $videoUrl ?>',
                 is_stereo: '<?php echo $stereo ?>',
               });
-              vrView.on('ready', onVRViewReady);
+              vrVideoView.on('ready', onVrVideoViewReady);
 
               playButton = document.querySelector('#toggleplay');
               muteButton = document.querySelector('#togglemute');
 
-              playButton.addEventListener('click', onTogglePlay);
-              muteButton.addEventListener('click', onToggleMute);
+              playButton.addEventListener('click', onVrVideoTogglePlay);
+              muteButton.addEventListener('click', onVrVideoToggleMute);
             }
 
 
-            function onVRViewReady() {
+            function onVrVideoViewReady() {
                 //console.log('vrView.isPaused', vrView.isPaused);
                 // Set the initial state of the buttons.
-                if (vrView.isPaused) {
+                if (vrVideoView.isPaused) {
                   playButton.classList.add('paused');
                 } else {
                   playButton.classList.remove('paused');
                 }
               }
 
-              function onTogglePlay() {
-                if (vrView.isPaused) {
-                  vrView.play();
+              function onVrVideoTogglePlay() {
+                if (vrVideoView.isPaused) {
+                  vrVideoView.play();
                   playButton.classList.remove('paused');
                 } else {
-                  vrView.pause();
+                  vrVideoView.pause();
                   playButton.classList.add('paused');
                 }
               }
 
-              function onToggleMute() {
+              function onVrVideoToggleMute() {
                 var isMuted = muteButton.classList.contains('muted');
                 if (isMuted) {
-                  vrView.setVolume(1);
+                  vrVideoView.setVolume(1);
                 } else {
-                  vrView.setVolume(0);
+                  vrVideoView.setVolume(0);
                 }
                 muteButton.classList.toggle('muted');
               }
-              window.addEventListener('load', onLoad);
+              window.addEventListener('load', onVrVideoLoad);
 
             </script>
           </div>

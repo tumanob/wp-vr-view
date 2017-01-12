@@ -39,7 +39,6 @@
 
         //Open the uploader dialog
         custom_uploader.open();
-
     });
 
 var ButtonDialog = {
@@ -60,7 +59,9 @@ var ButtonDialog = {
 		var stereo  = jQuery('#button-dialog select#stereo').val();
     var width   = jQuery('#button-dialog input#width').val();
     var height  = jQuery('#button-dialog input#height').val();
-
+    var yaw  = jQuery('#button-dialog input#yaw').val();
+    var hascontrols  = jQuery('#button-dialog select#hascontrols').val();
+    console.log(hascontrols);
   	var output = '';
 
 		// setup the output of our shortcode
@@ -74,6 +75,10 @@ var ButtonDialog = {
 			   output += 'width="' + width + '" ';
       if(height)
 			   output += 'height="' + height + '" ';
+      if(yaw)
+			   output += 'yaw="' + yaw + '" ';
+      if(hascontrols)
+			   output += 'hascontrols="' + hascontrols + '" ';
 
       output += ']';
 
@@ -101,11 +106,12 @@ tinyMCEPopup.onInit.add(ButtonDialog.init, ButtonDialog);
 				<input type="text" name="image" value="" id="image" />
 			</div>
 			<div>
-				<label for="stereo">Stereo</label>
-				<select name="stereo" id="stereo" size="1">
-					<option value="true">Yes</option>
-					<option value="false" selected="selected">No</option>
+				<label for="controls">Controls </label>
+				<select name="hascontrols" id="hascontrols" size="1">
+					<option value="true" selected="selected">Yes</option>
+					<option value="false">No</option>
 				</select>
+        Adds play/payse and sound toogle buttons.
 			</div>
       <div class="odd">
 				<label for="width">Width</label>
@@ -114,12 +120,27 @@ tinyMCEPopup.onInit.add(ButtonDialog.init, ButtonDialog);
 				<input type="text" name="height" value="" id="height" />
 			</div>
       <div>
+        <label for="stereo">Stereo?</label>
+        <select name="stereo" id="stereo" size="1">
+          <option value="true">Yes</option>
+          <option value="false" selected="selected">No</option>
+        </select>
+      </div>
+      <div class="odd">
+        <label for="width">Angle Shift</label>
+        <input type="text" name="yaw" value="" id="yaw" />
+        Move starting point +/- angle
+      </div>
+
+      <div>
         <span style="color:red;">* </span> - Required fields
         <br/>
-        <br/>
         <b>360 video url</b> Should be to .mp4 file. You can take it from Media library or from any other URL.
-        <br/>  <br/>
+        <br/>
         <b>Width and Height</b> -  might be in pixels or in percent ( 500, 100%)
+        <br/>
+        <b>Angle Shift</b> -  shift angle of starting point where user look.(could be form -360 to 360 angle)
+
       </div>
 			<div>
 				<a href="javascript:ButtonDialog.insert(ButtonDialog.local_ed)" id="insert" style="display: block; line-height: 24px;">Insert</a>

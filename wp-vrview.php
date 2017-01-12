@@ -1,8 +1,8 @@
 <?php
 /*
-* Plugin Name: WP-VR-view - Photo Sphere and 360 video
-* Description: Add photosphere and 360 video to wordpress pages, post etc. Google cardboard compatible.
-* Version: 1.8
+* Plugin Name: WP-VR-view - 360 photo/video
+* Description: Add 360 photos and  360 videos to wordpress pages, post, widgets etc. Google cardboard compatible. For additional information and usecases please visit demo website.
+* Version: 2.1
 * Author: Tumanov Alexander
 * Author URI: https://alexander-tumanov.name
 */
@@ -29,10 +29,8 @@ function vr_creation($atts){
        'height' => '360',
        'stereo' => 'false',
        'yaw'=>0,
-       'hascontrols'=>'false'
+       'hascontrols'=>'true'
    ), $atts );
-
-
 
    if ($a['video']) {
      $vrVideo1= new VrVideo($a);

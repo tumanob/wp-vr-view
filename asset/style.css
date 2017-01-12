@@ -66,6 +66,24 @@ a, a:visited {
   -webkit-filter: drop-shadow(white 0 0 5px);
 }
 
+#icon360 img {
+  position: fixed;
+  overflow: hidden;
+  right: 0;
+  top: 0;
+  opacity: 0.3;
+  width: 24px;
+  height: 24px;
+  padding: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+#icon360 img:hover {
+  opacity: 1;
+  -webkit-filter: drop-shadow(white 0 0 5px);
+}
+
 
 canvas {
   cursor: -webkit-grab;

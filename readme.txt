@@ -2,8 +2,8 @@
 Contributors: tumanob
 Tags: virtual, vr, 360, interactive, streetview, Goolge cardboard, cardboard, virtual reality, 360-degree, android, equirectangular, google, panoramas, Photo Sphere, photos, 360 video
 Requires at least: 3.9
-Tested up to: 4.6.1
-Stable tag: 1.6
+Tested up to: 4.7.1
+Stable tag: 2.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,7 +21,6 @@ http://www.youtube.com/watch?v=DWkLce9M-h0
 = Demos =
 
 * [Wodpress example photo and video](http://www.alexander-tumanov.name/wp-vr-view/ "Photo Sphere wordpress demo")
-* [Html page example](https://plugins.svn.wordpress.org/wp-vr-view/trunk/asset/pano/index.html "Html page")
 * [Photo Sphere sterio image](https://plugins.svn.wordpress.org/wp-vr-view/trunk/asset/pano/andes_2048.jpg "Photo Sphere sterio image")
 
 
@@ -36,6 +35,8 @@ If you want to contact me for any reason, feel free to email me at tumanob@gmail
 * width - in pixels or percent
 * height - in pixels or percent
 * stereo - value 'true' or 'false'
+* yaw -  angle shift option. Values from -360 to 360
+* hascontrols - value 'true' or 'false'  -  for video player to add controls buttons
 
 = Short codes examples: =
 1. **[vrview img="URL for photosphere image"]**
@@ -104,6 +105,14 @@ Do you have questions or issues with plugin? Use forum or email tumanob@gmail.co
 
 
 == Changelog ==
+
+= 2.1 =
+* Updated engine
+* Added Play/stop, Mute buttons for Video player
+* added option to shift view starting point
+
+= 1.6 =
+* checked WP version 4.6.1 support
 
 = 1.4 =
 * added support for 360 video

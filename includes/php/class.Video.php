@@ -16,7 +16,7 @@ class VrVideo
   function __construct($arguments)
   {
      $this->vrVideoUrl=$arguments['video'];
-     $this->vrPreviewImageUrl=$arguments['pimg'];
+     $this->vrPreviewImageUrl=$arguments['img'];
      $this->vrVideoWidth=$arguments['width'];
      $this->vrVideoHeight=$arguments['height'];
      $this->vrVideoIsStereo=$arguments['stereo'];

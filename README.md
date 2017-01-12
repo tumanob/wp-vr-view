@@ -10,7 +10,6 @@ Smartphone users can use Google cardboard  to look through in Virtual reality wa
 
 * [Quick Youtube Demo Video](http://www.youtube.com/watch?v=DWkLce9M-h0)
 * [Wodpress example photo and video](http://www.alexander-tumanov.name/wp-vr-view/ "Photo Sphere wordpress demo")
-* [Html page example](https://plugins.svn.wordpress.org/wp-vr-view/trunk/asset/pano/index.html "Html page")
 * [Photo Sphere sterio image](https://plugins.svn.wordpress.org/wp-vr-view/trunk/asset/pano/andes_2048.jpg "Photo Sphere sterio image")
 
 
@@ -23,7 +22,8 @@ Smartphone users can use Google cardboard  to look through in Virtual reality wa
 * width - in pixels or percent
 * height - in pixels or percent
 * stereo - value 'true' or 'false'
-
+* yaw -  angle shift option. Values from -360 to 360
+* hascontrols - value 'true' or 'false'  -  for video player to add controls buttons
 
 **Short codes examples:**
 
@@ -71,6 +71,12 @@ Do you have questions or issues with plugin? Use forum or email tumanob@gmail.co
 
 
 ### Changelog
+
+= 2.1 =
+* Updated engine
+* Added Play/stop, Mute buttons for Video player
+* added option to shift view starting point
+
 
 = 1.6 =
 * checked WP version 4.6.1 support

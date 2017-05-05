@@ -52,5 +52,3 @@ add_action('admin_enqueue_scripts', 'enqueue_scripts_styles_admin');
 function enqueue_scripts_styles_admin(){
     wp_enqueue_media();
 }
-
-?>

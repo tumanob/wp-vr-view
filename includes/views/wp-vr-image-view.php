@@ -25,24 +25,24 @@
           <div>
             <div id="vrimageview"></div>
 
-            <script src="<?php echo plugins_url();?>/wp-vr-view/asset/build/vrview.js"></script>
+            <script src="<?php echo esc_url( WP_NR_URL ) ;?>asset/build/vrview.js"></script>
 
             <script type="text/javascript">
             var vrImageView;
             var scenes = {
               wpvr: {
-                image: '<?php echo $imageUrl ?>',
-                preview: '<?php echo $previewImageUrl?>'
+                image: '<?php echo esc_js( $imageUrl );  ?>',
+                preview: '<?php echo esc_js( $previewImageUrl );  ?>'
               }
             };
 
             function onVrImageLoad() {
             //  console.log('On load');
               vrImageView = new VRView.Player('#vrimageview', {
-                width: '<?php echo $width ?>',
-                height: '<?php echo $height ?>',
-                image: '<?php echo plugins_url();?>/wp-vr-view/asset/images/blank.png',
-                is_stereo: <?php echo $stereo ?>,
+                width: '<?php echo esc_js( $width );  ?>',
+                height: '<?php echo esc_js( $height ); ?>',
+                image: '<?php echo esc_js( WP_NR_URL ); ?>asset/images/blank.png',
+                is_stereo: <?php echo esc_js( $stereo ) ?>,
                 is_autopan_off: true
               });
 

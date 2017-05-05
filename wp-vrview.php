@@ -34,9 +34,9 @@ add_action( 'init', 'vr_register_style' );
  *
  * @param $atts
  *
- * @return void
+ * @return string
  */
-function vr_creation( $atts ) {
+function vr_creation( $atts) {
 	wp_enqueue_style( 'wp_nr_vr_style' );
 
 	$a = shortcode_atts( array(
@@ -52,10 +52,10 @@ function vr_creation( $atts ) {
 
 	if ( $a['video'] ) {
 		$vrVideo1 = new VrVideo( $a );
-		echo $vrVideo1->generateHtmlCode();
+		return $vrVideo1->generateHtmlCode();
 	} else {
 		$vrImage1 = new VrImage( $a );
-		echo $vrImage1->generateHtmlCode();
+		return $vrImage1->generateHtmlCode();
 	}
 }
 add_shortcode( 'vrview', 'vr_creation' );

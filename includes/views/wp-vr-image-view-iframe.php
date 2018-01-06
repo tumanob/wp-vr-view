@@ -32,9 +32,9 @@
             if (is_string($yawAngle)){
                 $parameters.="&default_yaw=". esc_attr( $yawAngle );
             }
-
+          
 	        $vrImageHtmlCode = sprintf(
-		        '<iframe width="%s" height="%s" src="%s"></iframe>',
+		        '<div class="wp-vr-view"><iframe width="%s" height="%s" src="%s"></iframe></div>',
 		        esc_attr( $width ),
 		        esc_attr( $height ),
 		        esc_url( WP_NR_URL . 'asset/index.html?image=' . $imageUrl . $parameters )

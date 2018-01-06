@@ -30,9 +30,8 @@
                 $parameters.="&default_yaw=". esc_attr( $yawAngle );
             }
 
-
             $vrVideoHtmlCode = sprintf(
-            	'<iframe width="%s" height="%s" src="%s"></iframe>',
+            	'<div class="wp-vr-view"><iframe width="%s" height="%s" src="%s"></iframe></div>',
 	            esc_attr( $width ),
 	            esc_attr( $height ),
 	            esc_url( WP_NR_URL . 'asset/index.html?video=' . $videoUrl . $parameters )

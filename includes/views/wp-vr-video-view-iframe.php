@@ -31,7 +31,7 @@
             }
 
 
-            $vrVideoHtmlCode = ' <iframe width ="'.$width.'" height="'.$height.'" src="'.plugins_url().'/wp-vr-view/asset/index.html?video='.$videoUrl.$parameters.'"></iframe>';
+            $vrVideoHtmlCode = '<div class="wp-vr-view"><iframe width ="'.$width.'" height="'.$height.'" src="'.plugins_url().'/wp-vr-view/asset/index.html?video='.$videoUrl.$parameters.'"></iframe></div>';
 
             return $vrVideoHtmlCode;
         }

@@ -19,7 +19,7 @@
         {
             $parameters='';
             if ($previewImageUrl){
-                $parameters.='&preview='.$previewImageUrl;
+                $parameters.='&preview='. esc_url( $previewImageUrl );
             }
 
             if ($stereo=='true'){
@@ -27,11 +27,15 @@
             }
 
             if (is_string($yawAngle)){
-                $parameters.="&default_yaw=".$yawAngle;
+                $parameters.="&default_yaw=". esc_attr( $yawAngle );
             }
 
-
-            $vrVideoHtmlCode = '<div class="wp-vr-view"><iframe width ="'.$width.'" height="'.$height.'" src="'.plugins_url().'/wp-vr-view/asset/index.html?video='.$videoUrl.$parameters.'"></iframe></div>';
+            $vrVideoHtmlCode = sprintf(
+            	'<div class="wp-vr-view"><iframe width="%s" height="%s" src="%s"></iframe></div>',
+	            esc_attr( $width ),
+	            esc_attr( $height ),
+	            esc_url( WP_NR_URL . 'asset/index.html?video=' . $videoUrl . $parameters )
+	        );
 
             return $vrVideoHtmlCode;
         }

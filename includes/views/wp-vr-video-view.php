@@ -28,7 +28,7 @@
                 <div id="togglemute"></div>
             </div>
 
-            <script src="<?php echo plugins_url();?>/wp-vr-view/asset/build/vrview.js"></script>
+            <script src="<?php echo esc_url( WP_NR_URL ) ;?>asset/build/vrview.js"></script>
 
             <script type="text/javascript">
             var vrVideoView;
@@ -38,11 +38,11 @@
             function onVrVideoLoad() {
               // Load VR View.
               vrVideoView = new VRView.Player('#vrvideoview', {
-                width: '<?php echo $width ?>',
-                height: '<?php echo $height ?>',
-                video: '<?php echo $videoUrl ?>',
-                is_stereo: '<?php echo $stereo ?>',
-                default_yaw: '<?php echo $yawAngle ?>'
+                width: '<?php echo esc_js( $width ); ?>',
+                height: '<?php echo esc_js( $height ); ?>',
+                video: '<?php echo esc_js( $videoUrl ); ?>',
+                is_stereo: '<?php echo esc_js( $stereo );  ?>',
+                default_yaw: '<?php echo esc_js( $yawAngle); ?>'
               });
               vrVideoView.on('ready', onVrVideoViewReady);
 
@@ -91,4 +91,3 @@
     <?php
         }
     }
-    ?>

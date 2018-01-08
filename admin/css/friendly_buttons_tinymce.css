@@ -1,13 +1,39 @@
-#button-dialog { }
-#button-dialog div{ padding: 10px; min-height: 40px;}
-#button-dialog label { display: block; float: left; margin: 0 8px 0 0; width:30%; /*width: 80px;*/ }
-#button-dialog select, #button-dialog input { display: block; width: 60%; padding: 3px 5px;}
-#button-dialog select { width: 112px; }
-#button-dialog #insert { display: block; line-height: 24px; text-align: center; margin: 10px 0 0 0;
-       padding: 10px;
+#button-dialog {
+}
+
+#button-dialog div {
+    padding: 10px;
+    min-height: 40px;
+}
+
+#button-dialog label {
     display: block;
+    float: left;
+    margin: 0 8px 0 0;
+    width: 30%;
+}
+
+#button-dialog select, #button-dialog input {
+    display: block;
+    width: 60%;
+    padding: 3px 5px;
+}
+
+#button-dialog select {
+    width: 112px;
+}
+
+#button-dialog #insert {
+    display: block;
+    line-height: 24px;
+    text-align: center;
+    margin: 10px 0 0 0;
+    padding: 10px;
     min-height: 46PX;
-    font-size: 26PX;}
+    font-size: 26PX;
+}
 
-
-#button-dialog div.odd { background: #2DA1CC; color: white;}
+#button-dialog div.odd {
+    background: #2DA1CC;
+    color: white;
+}

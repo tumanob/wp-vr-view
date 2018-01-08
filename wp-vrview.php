@@ -10,9 +10,9 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 define( 'WP_NR_VERSION', '2.2' );
 define( 'WP_NR_URL', esc_url( plugin_dir_url( __FILE__ ), array( 'http', 'https' ) ) );
-define( 'WP_NR_PATH', wp_normalize_path( dirname( __FILE__ ) . '/' ) );
+//define( 'WP_NR_PATH', wp_normalize_path( dirname( __FILE__ ) . '/' ) );
 
-require_once( __DIR__ . '/includes/php/autoload.php' );
+require_once __DIR__ . '/includes/php/autoload.php';
 
 /**
  * Register our stylesheet to be used later
@@ -20,13 +20,14 @@ require_once( __DIR__ . '/includes/php/autoload.php' );
  * @return void
  */
 function vr_register_style() {
-    wp_register_style(
-        'wp_nr_vr_style',
-	    WP_NR_URL . 'includes/css/style.css',
-        array(),
-	    WP_NR_VERSION
-    );
+	wp_register_style(
+		'wp_nr_vr_style',
+		WP_NR_URL . 'includes/css/style.css',
+		array(),
+		WP_NR_VERSION
+	);
 }
+
 add_action( 'init', 'vr_register_style' );
 
 /**
@@ -36,9 +37,16 @@ add_action( 'init', 'vr_register_style' );
  *
  * @return string
  */
-function vr_creation( $atts) {
+function vr_creation( $atts ) {
 	wp_enqueue_style( 'wp_nr_vr_style' );
 
+	/**  NEW fields
+	 * is_vr_off
+	 * is_autopan_off
+	 * loop
+	 * hide_fullscreen_button
+	 * muted
+	 */
 	$a = shortcode_atts( array(
 		'img'         => '',
 		'video'       => '',
@@ -47,15 +55,23 @@ function vr_creation( $atts) {
 		'height'      => '360',
 		'stereo'      => 'false',
 		'yaw'         => 0,
-		'hascontrols' => 'true'
+		'hascontrols' => true,
+		'is_vr_off' => '',
+		'is_autopan_off' => '',
+		'loop' => true,
+		'hide_fullscreen_button' => '',
+		'muted' => false
 	), $atts );
 
 	if ( $a['video'] ) {
 		$vrVideo1 = new VrVideo( $a );
+
 		return $vrVideo1->generateHtmlCode();
-	} else {
-		$vrImage1 = new VrImage( $a );
-		return $vrImage1->generateHtmlCode();
 	}
+
+	$vrImage1 = new VrImage( $a );
+
+	return $vrImage1->generateHtmlCode();
 }
+
 add_shortcode( 'vrview', 'vr_creation' );

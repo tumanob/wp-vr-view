@@ -4,148 +4,149 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Add 360 Video</title>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
-<script language="javascript" type="text/javascript" src="../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
-<style type="text/css" src="../../../../../wp-includes/js/tinymce/themes/advanced/skins/wp_theme/dialog.css"></style>
-<link rel="stylesheet" href="../css/friendly_buttons_tinymce.css" />
+    <title>Add 360 Video</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+    <script type="text/javascript"
+            src="../../../../../wp-includes/js/tinymce/tiny_mce_popup.js"></script>
+    <style type="text/css"
+           src="../../../../../wp-includes/js/tinymce/themes/advanced/skins/wp_theme/dialog.css"></style>
+    <link rel="stylesheet" href="../css/friendly_buttons_tinymce.css"/>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-  var args = top.tinymce.activeEditor.windowManager.getParams();
-  var wp = args.wp;
+        var args = top.tinymce.activeEditor.windowManager.getParams();
+        var wp = args.wp;
 
-  var custom_uploader;
+        var custom_uploader;
 
-    $('.upload_image_button').click(function(e) {
-        e.preventDefault();
+        $('.upload_image_button').click(function (e) {
+            e.preventDefault();
 
-        var $upload_button = $(this);
+            var $upload_button = $(this);
 
-        //Extend the wp.media object
-        custom_uploader = wp.media.frames.file_frame = wp.media({
-            title: 'Choose Image',
-            button: {
-                text: 'Choose Image'
+            //Extend the wp.media object
+            custom_uploader = wp.media.frames.file_frame = wp.media({
+                title: 'Choose Image',
+                button: {
+                    text: 'Choose Image'
+                },
+                multiple: false
+            });
+
+            //When a file is selected, grab the URL and set it as the text field's value
+            custom_uploader.on('select', function () {
+                var attachment = custom_uploader.state().get('selection').first().toJSON();
+                $upload_button.siblings('input[type="text"]').val(attachment.url);
+            });
+
+            //Open the uploader dialog
+            custom_uploader.open();
+        });
+
+        var ButtonDialog = {
+            local_ed: 'ed',
+            init: function (ed) {
+                ButtonDialog.local_ed = ed;
+                tinyMCEPopup.resizeToInnerSize();
             },
-            multiple: false
-        });
+            insert: function insertButton(ed) {
 
-        //When a file is selected, grab the URL and set it as the text field's value
-        custom_uploader.on('select', function() {
-            var attachment = custom_uploader.state().get('selection').first().toJSON();
-            $upload_button.siblings('input[type="text"]').val(attachment.url);
-        });
+                // Try and remove existing style / blockquote
+                tinyMCEPopup.execCommand('mceRemoveNode', false, null);
 
-        //Open the uploader dialog
-        custom_uploader.open();
-    });
+                // set up variables to contain our input values
+                //  var video   = jQuery('#button-dialog input#video').val();
+                var video = jQuery('#button-dialog input#video').val();
+                var image = jQuery('#button-dialog input#image').val();
+                var stereo = jQuery('#button-dialog select#stereo').val();
+                var width = jQuery('#button-dialog input#width').val();
+                var height = jQuery('#button-dialog input#height').val();
+                var yaw = jQuery('#button-dialog input#yaw').val();
+                var hascontrols = jQuery('#button-dialog select#hascontrols').val();
+                console.log(hascontrols);
 
-var ButtonDialog = {
-	local_ed : 'ed',
-	init : function(ed) {
-		ButtonDialog.local_ed = ed;
-		tinyMCEPopup.resizeToInnerSize();
-	},
-	insert : function insertButton(ed) {
+                // setup the output of our shortcode
+                output = '[vrview ';
+                output += 'video="' + video + '" ';
+                if (image)
+                    output += 'img="' + image + '" ';
+                if (stereo === "true")
+                    output += 'stereo="' + stereo + '" ';
+                if (width)
+                    output += 'width="' + width + '" ';
+                if (height)
+                    output += 'height="' + height + '" ';
+                if (yaw)
+                    output += 'yaw="' + yaw + '" ';
+                if (hascontrols)
+                    output += 'hascontrols="' + hascontrols + '" ';
 
-		// Try and remove existing style / blockquote
-		tinyMCEPopup.execCommand('mceRemoveNode', false, null);
+                output += ']';
 
-		// set up variables to contain our input values
-  //  var video   = jQuery('#button-dialog input#video').val();
-    var video  = jQuery('#button-dialog input#video').val();
-		var image   = jQuery('#button-dialog input#image').val();
-		var stereo  = jQuery('#button-dialog select#stereo').val();
-    var width   = jQuery('#button-dialog input#width').val();
-    var height  = jQuery('#button-dialog input#height').val();
-    var yaw  = jQuery('#button-dialog input#yaw').val();
-    var hascontrols  = jQuery('#button-dialog select#hascontrols').val();
-    console.log(hascontrols);
-  	var output = '';
+                tinyMCEPopup.execCommand('mceReplaceContent', false, output);
 
-		// setup the output of our shortcode
-		output = '[vrview ';
-			output += 'video="' + video + '" ';
-      if(image)
-			   output += 'img="' + image + '" ';
-      if(stereo=="true")
-			   output += 'stereo="' + stereo + '" ';
-      if(width)
-			   output += 'width="' + width + '" ';
-      if(height)
-			   output += 'height="' + height + '" ';
-      if(yaw)
-			   output += 'yaw="' + yaw + '" ';
-      if(hascontrols)
-			   output += 'hascontrols="' + hascontrols + '" ';
+                // Return
+                tinyMCEPopup.close();
+            }
+        };
+        tinyMCEPopup.onInit.add(ButtonDialog.init, ButtonDialog);
 
-      output += ']';
-
-		tinyMCEPopup.execCommand('mceReplaceContent', false, output);
-
-		// Return
-		tinyMCEPopup.close();
-	}
-};
-tinyMCEPopup.onInit.add(ButtonDialog.init, ButtonDialog);
-
-</script>
+    </script>
 
 </head>
 <body>
-	<div id="button-dialog">
-		<form action="/" method="get" accept-charset="utf-8">
-			<div>
-				<label for="video">360 video .mp4 file URL<span style="color:red;">* </span></label>
-				<input type="text" name="video" value="" id="video" />
-        <!--<a href="#" class="media_add_link"> add image from library</a>-->
-			</div>
-			<div class="odd">
-				<label for="image">Image preview URL</label>
-				<input type="text" name="image" value="" id="image" />
-			</div>
-			<div>
-				<label for="controls">Controls </label>
-				<select name="hascontrols" id="hascontrols" size="1">
-					<option value="true" selected="selected">Yes</option>
-					<option value="false">No</option>
-				</select>
-        Adds play/payse and sound toogle buttons.
-			</div>
-      <div class="odd">
-				<label for="width">Width</label>
-				<input type="text" name="width" value="" id="width" />
-        <label for="height">Height</label>
-				<input type="text" name="height" value="" id="height" />
-			</div>
-      <div>
-        <label for="stereo">Stereo?</label>
-        <select name="stereo" id="stereo" size="1">
-          <option value="true">Yes</option>
-          <option value="false" selected="selected">No</option>
-        </select>
-      </div>
-      <div class="odd">
-        <label for="width">Angle Shift</label>
-        <input type="text" name="yaw" value="" id="yaw" />
-        Move starting point +/- angle
-      </div>
+<div id="button-dialog">
+    <form action="/" method="get" accept-charset="utf-8">
+        <div>
+            <label for="video">360 video .mp4 file URL<span style="color:red;">* </span></label>
+            <input type="text" name="video" value="" id="video"/>
+        </div>
+        <div class="odd">
+            <label for="image">Image preview URL</label>
+            <input type="text" name="image" value="" id="image"/>
+        </div>
+        <div>
+            <label for="hascontrols">Controls </label>
+            <select name="hascontrols" id="hascontrols" size="1">
+                <option value="true" selected="selected">Yes</option>
+                <option value="false">No</option>
+            </select>
+            Adds play/pause and sound toggle buttons.
+        </div>
+        <div class="odd">
+            <label for="width">Width</label>
+            <input type="text" name="width" value="" id="width"/>
+            <label for="height">Height</label>
+            <input type="text" name="height" value="" id="height"/>
+        </div>
+        <div>
+            <label for="stereo">Stereo?</label>
+            <select name="stereo" id="stereo" size="1">
+                <option value="true">Yes</option>
+                <option value="false" selected="selected">No</option>
+            </select>
+        </div>
+        <div class="odd">
+            <label for="yaw">Angle Shift</label>
+            <input type="text" name="yaw" value="" id="yaw"/>
+            Move starting point +/- angle
+        </div>
 
-      <div>
-        <span style="color:red;">* </span> - Required fields
-        <br/>
-        <b>360 video url</b> Should be to .mp4 file. You can take it from Media library or from any other URL.
-        <br/>
-        <b>Width and Height</b> -  might be in pixels or in percent ( 500, 100%)
-        <br/>
-        <b>Angle Shift</b> -  shift angle of starting point where user look.(could be form -360 to 360 angle)
+        <div>
+            <span style="color:red;">* </span> - Required fields
+            <br/>
+            <b>360 video url</b> Should be to .mp4 file. You can take it from Media library or from any other URL.
+            <br/>
+            <b>Width and Height</b> - might be in pixels or in percent ( 500, 100%)
+            <br/>
+            <b>Angle Shift</b> - shift angle of starting point where user look.(could be form -360 to 360 angle)
 
-      </div>
-			<div>
-				<a href="javascript:ButtonDialog.insert(ButtonDialog.local_ed)" id="insert" style="display: block; line-height: 24px;">Insert</a>
-			</div>
-		</form>
-	</div>
+        </div>
+        <div>
+            <a href="javascript:ButtonDialog.insert(ButtonDialog.local_ed)" id="insert"
+               style="display: block; line-height: 24px;">Insert</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

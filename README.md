@@ -72,7 +72,7 @@ Do you have questions or issues with plugin? Use forum or email tumanob@gmail.co
 
 ### Changelog
 
-= 2.1 =
+= 2.0 =
 * Updated engine
 * Added Play/stop, Mute buttons for Video player
 * added option to shift view starting point

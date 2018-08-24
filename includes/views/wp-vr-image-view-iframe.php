@@ -2,18 +2,10 @@
 
 /**
  * class to render the html for single VR image
- *
- * @package MVC - View of the page with iframe generation
- * @subpackage Single Image View
  * @since 1.8
  */
 class wpVrSingleImageHtmlViewIframe {
 	/**
-	 *
-	 *
-	 * @package MVC Example
-	 * @subpackage Single Post View
-	 *
 	 * @return string $html the html for the view
 	 * @since 0.1
 	 */

@@ -2,15 +2,10 @@
 
 /**
  * class to render the html for single VR Video with controls using JS API
- *
- * @package MVC - View of the page with iframe generation
- * @subpackage Single Video View with controls
  * @since 1.8
  */
 class wpVrSingleVideoHtmlViewIframe {
 	/**
-	 * @package MVC Example
-	 *
 	 * @return string $html the html for the view
 	 */
 

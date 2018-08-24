@@ -2,18 +2,10 @@
 
 /**
  * class to render the html for single VR Video
- *
- * @package MVC - View
- * @subpackage Single Video View
  * @since 1.8
  */
 class wpVrSingleVideoHtmlView {
 	/**
-	 * print the message
-	 *
-	 * @package MVC Example
-	 * @subpackage Single Post View
-	 *
 	 * @return string $html the html for the view
 	 * @since 0.1
 	 */
@@ -37,7 +29,7 @@ class wpVrSingleVideoHtmlView {
                 <div id="togglefullscreen"></div>
             </div>
 
-            <script src="<?php echo esc_url( WP_NR_URL ); ?>asset/build/vrview.js"></script>
+            <script src="<?php echo esc_url( WP_NR_URL ); ?>asset/build/vrview.min.js"></script>
             <script type="text/javascript">
                 var vrView;
                 var playButton;
@@ -55,7 +47,7 @@ class wpVrSingleVideoHtmlView {
                         //hide_fullscreen_button: true,
                         //volume: 0.4,
                         //muted: true,
-                        is_debug: true
+                        is_debug: false
                         //default_heading: 190
                        // is_yaw_only: true,
                         //is_vr_off: true,

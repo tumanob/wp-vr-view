@@ -2,18 +2,10 @@
 
 /**
  * class to render the html for single VR image
- *
- * @package MVC - View of the page
- * @subpackage Single Image View
  * @since 1.8
  */
 class wpVrSingleImageHtmlView {
 	/**
-	 * print the message
-	 *
-	 * @package MVC Example
-	 * @subpackage Single Post View
-	 *
 	 * @return string $html the html for the view
 	 * @since 0.1
 	 */
@@ -23,7 +15,7 @@ class wpVrSingleImageHtmlView {
         <div>
             <div id="vrimageview"></div>
 
-            <script src="<?php echo esc_url( WP_NR_URL ); ?>asset/build/vrview.js"></script>
+            <script src="<?php echo esc_url( WP_NR_URL ); ?>asset/build/vrview.min.js"></script>
 
             <script type="text/javascript">
                 var vrImageView;

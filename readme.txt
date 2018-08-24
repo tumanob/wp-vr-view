@@ -2,8 +2,8 @@
 Contributors: tumanob
 Tags: virtual, vr, 360, interactive, streetview, Goolge cardboard, cardboard, virtual reality, 360-degree, android, equirectangular, google, panoramas, Photo Sphere, photos, 360 video
 Requires at least: 3.9
-Tested up to: 4.9.1
-Stable tag: 2.2
+Tested up to: 4.9.8
+Stable tag: 2.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -106,8 +106,8 @@ Do you have questions or issues with plugin? Use forum or email tumanob@gmail.co
 
 == Changelog ==
 
-= 2.1 =
-* Updated engine
+= 2.0 =
+* Updated VR engine for better cross device and browsers support
 * Added Play/stop, Mute buttons for Video player
 * added option to shift view starting point
 

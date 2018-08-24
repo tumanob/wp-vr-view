@@ -2,7 +2,7 @@
 /*
 * Plugin Name: WP-VR-view - 360 photo/video
 * Description: Add 360 photos and  360 videos to wordpress pages, post, widgets etc. Google cardboard compatible. For additional information and usecases please visit demo website.
-* Version: 2.2
+* Version: 2.0
 * Author: Tumanov Alexander
 * Author URI: https://alexander-tumanov.name
 */
@@ -10,7 +10,6 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 define( 'WP_NR_VERSION', '2.2' );
 define( 'WP_NR_URL', esc_url( plugin_dir_url( __FILE__ ), array( 'http', 'https' ) ) );
-//define( 'WP_NR_PATH', wp_normalize_path( dirname( __FILE__ ) . '/' ) );
 
 require_once __DIR__ . '/includes/php/autoload.php';
 

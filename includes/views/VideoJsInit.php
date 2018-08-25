@@ -1,25 +1,31 @@
 <?php
 
 /**
- * class to render the html for single VR Video
- * @since 1.8
+ * Render the html for single VR Video using JS API
  */
-class wpVrSingleVideoHtmlView {
-	/**
-	 * @return string $html the html for the view
-	 * @since 0.1
-	 */
-	public static function render( $videoUrl, $previewImageUrl, $width, $height, $stereo, $yawAngle ) {
+class VideoJsInit {
 
+	/**
+	 * @param $videoUrl
+	 * @param $width
+	 * @param $height
+	 * @param $stereo
+	 * @param $yawAngle
+	 * @return mixed
+	 * @throws Exception
+	 */
+	public static function render( $videoUrl, $width, $height, $stereo, $yawAngle ) {
+
+        $randomClassAddon = random_int(10,100);
+		ob_start();
 
 		?>
-
         <div class="wp-vr-view" style="width:<?php if ( strpos( $width, '%' ) !== false ) {
 			echo $width;
 		} else {
-			echo $width . "px";
+			echo $width . 'px';
 		} ?>">
-            <div id="vrview"></div>
+            <div id="vrview<?= $randomClassAddon; ?>"></div>
 
             <div id="controls">
                 <div id="toggleplay" class="paused"></div>
@@ -37,7 +43,7 @@ class wpVrSingleVideoHtmlView {
 
                 function onLoad() {
                     // Load VR View.
-                    vrView = new VRView.Player('#vrview', {
+                    vrView = new VRView.Player('#vrview<?= $randomClassAddon;?>', {
                         width: '<?php echo esc_js( $width ); ?>',
                         height: '<?php echo esc_js( $height ); ?>',
                         video: '<?php echo esc_js( $videoUrl ); ?>',
@@ -138,5 +144,9 @@ class wpVrSingleVideoHtmlView {
         </div>
 
 		<?php
+		$returnGeneratedHtml = ob_get_contents();
+		ob_end_clean();
+
+		return $returnGeneratedHtml;
 	}
 }

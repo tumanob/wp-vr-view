@@ -2,20 +2,19 @@
 /*
 * Plugin Name: WP-VR-view - 360 photo/video
 * Description: Add 360 photos and  360 videos to wordpress pages, post, widgets etc. Google cardboard compatible. For additional information and usecases please visit demo website.
-* Version: 2.0
+* Version: 2.1
 * Author: Tumanov Alexander
 * Author URI: https://alexander-tumanov.name
 */
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-define( 'WP_NR_VERSION', '2.2' );
+define( 'WP_NR_VERSION', '2.3' );
 define( 'WP_NR_URL', esc_url( plugin_dir_url( __FILE__ ), array( 'http', 'https' ) ) );
 
 require_once __DIR__ . '/includes/php/autoload.php';
 
 /**
- * Register our stylesheet to be used later
- *
+ * Register stylesheet to be used later
  * @return void
  */
 function vr_register_style() {
@@ -30,7 +29,7 @@ function vr_register_style() {
 add_action( 'init', 'vr_register_style' );
 
 /**
- * Shortcode to display form on any page or post.
+ * Shortcode to display on any page, post or widget.
  *
  * @param $atts
  *
@@ -46,7 +45,7 @@ function vr_creation( $atts ) {
 	 * hide_fullscreen_button
 	 * muted
 	 */
-	$a = shortcode_atts( array(
+	$shortcodeAtts = shortcode_atts( array(
 		'img'         => '',
 		'video'       => '',
 		'pimg'        => '',
@@ -62,15 +61,15 @@ function vr_creation( $atts ) {
 		'muted' => false
 	), $atts );
 
-	if ( $a['video'] ) {
-		$vrVideo1 = new VrVideo( $a );
+	if ( $shortcodeAtts['video'] ) {
+		$vrVideo = new VrVideo($shortcodeAtts);
 
-		return $vrVideo1->generateHtmlCode();
+		return $vrVideo->generateHtmlCode();
 	}
 
-	$vrImage1 = new VrImage( $a );
+	$vrImage = new VrImage( $shortcodeAtts );
 
-	return $vrImage1->generateHtmlCode();
+	return $vrImage->generateHtmlCode();
 }
 
 add_shortcode( 'vrview', 'vr_creation' );

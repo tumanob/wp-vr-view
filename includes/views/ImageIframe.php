@@ -1,13 +1,18 @@
 <?php
 
 /**
- * class to render the html for single VR image
- * @since 1.8
+ * Render html for single VR image in i-frame
  */
-class wpVrSingleImageHtmlViewIframe {
+class ImageIframe {
+
 	/**
+	 * @param $imageUrl
+	 * @param $previewImageUrl
+	 * @param $width
+	 * @param $height
+	 * @param $stereo
+	 * @param $yawAngle
 	 * @return string $html the html for the view
-	 * @since 0.1
 	 */
 	public static function render( $imageUrl, $previewImageUrl, $width, $height, $stereo, $yawAngle ) {
 		$parameters = '';
@@ -15,12 +20,12 @@ class wpVrSingleImageHtmlViewIframe {
 			$parameters .= '&preview=' . esc_url( $previewImageUrl );
 		}
 
-		if ( $stereo == 'true' ) {
-			$parameters .= "&is_stereo=true";
+		if ( 'true' === $stereo) {
+			$parameters .= '&is_stereo=true';
 		}
 
 		if ( is_string( $yawAngle ) ) {
-			$parameters .= "&default_yaw=" . esc_attr( $yawAngle );
+			$parameters .= '&default_yaw=' . esc_attr( $yawAngle );
 		}
 
 		$vrImageHtmlCode = sprintf(

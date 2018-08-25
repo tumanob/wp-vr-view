@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  *
  */
@@ -25,16 +24,8 @@ class VrImage {
 
 	public function generateHtmlCode() {
 
-		// get html code from views -  for JS API
-		/*  $htmlCode = wpVrSingleImageHtmlView::render( $this->vrImageUrl,
-													   $this->vrPreviewImageUrl,
-													   $this->vrImageWidth,
-													   $this->vrImageHeight,
-													   $this->vrImageIsStereo
-													   );
-	  */
 		// HTML template for iframe
-		$htmlCode = wpVrSingleImageHtmlViewIframe::render( $this->vrImageUrl,
+		$htmlCode = ImageIframe::render( $this->vrImageUrl,
 			$this->vrPreviewImageUrl,
 			$this->vrImageWidth,
 			$this->vrImageHeight,
@@ -44,5 +35,4 @@ class VrImage {
 
 		return $htmlCode;
 	}
-
 }

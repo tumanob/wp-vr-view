@@ -1,26 +1,31 @@
 <?php
 
 /**
- * class to render the html for single VR Video with controls using JS API
- * @since 1.8
+ * Render html code for VR Video i-frame player
  */
-class wpVrSingleVideoHtmlViewIframe {
-	/**
-	 * @return string $html the html for the view
-	 */
+class VideoIframe {
 
+	/**
+	 * @param $videoUrl
+	 * @param $previewImageUrl
+	 * @param $width
+	 * @param $height
+	 * @param $stereo
+	 * @param $yawAngle
+	 * @return mixed
+	 */
 	public static function render( $videoUrl, $previewImageUrl, $width, $height, $stereo, $yawAngle ) {
 		$parameters = '';
 		if ( $previewImageUrl ) {
 			$parameters .= '&preview=' . esc_url( $previewImageUrl );
 		}
 
-		if ( $stereo == 'true' ) {
-			$parameters .= "&is_stereo=true";
+		if ( 'true' === $stereo ) {
+			$parameters .= '&is_stereo=true';
 		}
 
 		if ( is_string( $yawAngle ) ) {
-			$parameters .= "&default_yaw=" . esc_attr( $yawAngle );
+			$parameters .= '&default_yaw=' . esc_attr( $yawAngle );
 		}
 
 		$vrVideoHtmlCode = sprintf(

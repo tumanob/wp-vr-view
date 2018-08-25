@@ -26,10 +26,9 @@ class VrVideo {
 
 	public function generateHtmlCode() {
 
-		if ( $this->vrVideoHasControls == 'true' ) {
+		if ('true' === $this->vrVideoHasControls) {
 			// get html code from views -  if has controls use JS API
-			$htmlCode = wpVrSingleVideoHtmlView::render( $this->vrVideoUrl,
-				$this->vrPreviewImageUrl,
+			$htmlCode = VideoJsInit::render( $this->vrVideoUrl,
 				$this->vrVideoWidth,
 				$this->vrVideoHeight,
 				$this->vrVideoIsStereo,
@@ -37,7 +36,7 @@ class VrVideo {
 			);
 		} else {
 			// get html code from views -  use iframe video -  as in previous versions.
-			$htmlCode = wpVrSingleVideoHtmlViewIframe::render( $this->vrVideoUrl,
+			$htmlCode = VideoIframe::render( $this->vrVideoUrl,
 				$this->vrPreviewImageUrl,
 				$this->vrVideoWidth,
 				$this->vrVideoHeight,
